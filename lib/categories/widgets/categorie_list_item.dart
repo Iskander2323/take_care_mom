@@ -9,7 +9,6 @@ class CategoriesListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: GestureDetector(
@@ -23,23 +22,22 @@ class CategoriesListItem extends StatelessWidget {
                 color: Colors.black,
                 width: 0.5,
               )),
-          padding: EdgeInsets.all(1.0),
-          height: 260,
+          padding: const EdgeInsets.all(1.0),
+          height: 245,
           width: 80,
           child: Column(
             children: [
-              if (categorie.feature_image != null &&
-                  categorie.feature_image.isNotEmpty)
-                Container(
+              if (categorie.featureImage.isNotEmpty)
+                SizedBox(
                   height: 200,
                   width: 500,
                   child: ClipRRect(
-                    borderRadius: BorderRadius.only(
+                    borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(15),
                       topRight: Radius.circular(15),
                     ),
                     child: Image.network(
-                      categorie.feature_image,
+                      categorie.featureImage,
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -48,7 +46,7 @@ class CategoriesListItem extends StatelessWidget {
                 Container(
                   height: 200,
                   width: 500,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                       borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(10),
                         topRight: Radius.circular(10),
@@ -62,14 +60,12 @@ class CategoriesListItem extends StatelessWidget {
                           ])),
                 ),
               Container(
-                alignment: Alignment.bottomCenter,
-                child: Column(
-                  children: [
-                    Text(categorie.name,
-                        style: Theme.of(context).textTheme.titleLarge),
-                    Text(categorie.slug),
-                  ],
+                margin: const EdgeInsets.only(
+                  top: 5,
                 ),
+                alignment: Alignment.bottomCenter,
+                child: Text(categorie.name,
+                    style: Theme.of(context).textTheme.titleLarge),
               ),
             ],
           ),

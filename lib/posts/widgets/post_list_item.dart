@@ -9,7 +9,6 @@ class PostsListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: GestureDetector(
@@ -24,20 +23,20 @@ class PostsListItem extends StatelessWidget {
                 width: 0.5,
               )),
           padding: const EdgeInsets.all(1.0),
-          height: 240,
+          height: 245,
           width: 80,
           child: Column(
             children: [
-              if (post.feature_image != null && post.feature_image.isNotEmpty)
-                Container(
+              if (post.featureImage.isNotEmpty)
+                SizedBox(
                   height: 200,
                   width: 500,
                   child: ClipRRect(
-                    borderRadius: BorderRadius.only(
+                    borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(15),
                         topRight: Radius.circular(15)),
                     child: Image.network(
-                      post.feature_image,
+                      post.featureImage,
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -60,14 +59,13 @@ class PostsListItem extends StatelessWidget {
                           ])),
                 ),
               Container(
+                margin: const EdgeInsets.only(
+                  top: 5,
+                ),
                 alignment: Alignment.bottomCenter,
-                child: Column(
-                  children: [
-                    Text(
-                      post.title,
-                      style: Theme.of(context).textTheme.titleLarge,
-                    ),
-                  ],
+                child: Text(
+                  post.title,
+                  style: Theme.of(context).textTheme.titleLarge,
                 ),
               ),
             ],

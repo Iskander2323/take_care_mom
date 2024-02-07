@@ -1,7 +1,4 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/categories/widgets/bottom_loader.dart';
 import 'package:flutter_application_1/page/bloc/page_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
@@ -26,7 +23,7 @@ class PageViewBody extends StatelessWidget {
                 children: [
                   Container(
                     alignment: Alignment.topLeft,
-                    margin: EdgeInsets.only(
+                    margin: const EdgeInsets.only(
                       top: 10,
                       left: 15,
                       right: 15,

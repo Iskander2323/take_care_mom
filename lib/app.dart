@@ -8,16 +8,14 @@ final routes = RouteMap(routes: {
   '/': (_) => const MaterialPage(child: CategoriesPage()),
   '/posts/': (_) => const MaterialPage(child: CategoriesPage()),
   '/posts/:slug': (routeData) {
-    final slug = routeData.pathParameters['slug'] ?? ' ';
+    final slug = routeData.pathParameters['slug'] ?? '';
     return MaterialPage(child: PostsPage(slug: slug));
   },
   '/page/': (_) => const MaterialPage(child: CategoriesPage()),
   '/page/:id': (routeData) {
-    final id = routeData.pathParameters['id'] ?? ' ';
+    final id = routeData.pathParameters['id'] ?? '';
     return MaterialPage(child: PostViewPage(id: id));
   },
-
-  /// 'page': (routeData) => MaterialPage(child: PageView()),
 });
 
 class App extends MaterialApp {
