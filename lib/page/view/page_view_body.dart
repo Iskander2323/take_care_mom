@@ -24,9 +24,10 @@ class PageViewBody extends StatelessWidget {
                   Container(
                     alignment: Alignment.topLeft,
                     margin: const EdgeInsets.only(
-                      top: 10,
+                      top: 40,
                       left: 15,
                       right: 15,
+                      bottom: 15,
                     ),
                     child: Text(
                       state.page.first.title,
@@ -40,7 +41,10 @@ class PageViewBody extends StatelessWidget {
                         top: 3,
                         bottom: 20,
                       ),
-                      child: HtmlWidget(state.page.first.html)),
+                      child: HtmlWidget(
+                        state.page.first.html,
+                        textStyle: const TextStyle(fontSize: 20),
+                      )),
                 ],
               ),
             );

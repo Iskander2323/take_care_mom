@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/categories/view/categories_page.dart';
 import 'package:flutter_application_1/page/view/page_view.dart';
+import 'package:flutter_application_1/repository/posts_repository.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:routemaster/routemaster.dart';
 import 'package:flutter_application_1/posts/view/posts_page.dart';
 
@@ -28,9 +30,12 @@ class App extends MaterialApp {
             routeInformationParser: routeInformationParser);
 }
 
-App startApp() {
-  return App(
-    routedDelegate: RoutemasterDelegate(routesBuilder: (context) => routes),
-    routeInformationParser: const RoutemasterParser(),
+Widget startApp(PostsRepository postsRepository) {
+  return RepositoryProvider.value(
+    value: postsRepository,
+    child: App(
+      routedDelegate: RoutemasterDelegate(routesBuilder: (context) => routes),
+      routeInformationParser: const RoutemasterParser(),
+    ),
   );
 }
