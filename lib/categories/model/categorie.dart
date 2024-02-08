@@ -4,7 +4,7 @@ class Categorie extends Equatable {
   const Categorie(
       {required this.name, required this.slug, required this.featureImage});
 
-  Categorie.apiConstructor(Map<String, dynamic> data)
+  Categorie.fromJson(Map<String, dynamic> data)
       : name = data['name'],
         slug = data['slug'],
         featureImage = data['feature_image'] ?? "";

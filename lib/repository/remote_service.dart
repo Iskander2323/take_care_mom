@@ -19,9 +19,8 @@ class RemoteService {
       List<Categorie> result = [];
       for (Map<String, dynamic> categorie in categories) {
         if (categorie['visibility'] != 'public') continue;
-        result.add(Categorie.apiConstructor(categorie));
+        result.add(Categorie.fromJson(categorie));
       }
-      print(result);
       return result;
     } else {
       throw Exception('Failed to load');
@@ -69,6 +68,4 @@ class RemoteService {
       throw Exception('Failed to load');
     }
   }
-
-
 }
