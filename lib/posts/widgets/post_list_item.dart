@@ -5,7 +5,7 @@ import 'package:routemaster/routemaster.dart' as routemaster;
 class PostsListItem extends StatelessWidget {
   const PostsListItem({required this.post, super.key});
 
-  final Post post;
+  final PostModel post;
 
   @override
   Widget build(BuildContext context) {

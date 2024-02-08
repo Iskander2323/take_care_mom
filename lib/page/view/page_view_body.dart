@@ -14,41 +14,40 @@ class PageViewBody extends StatelessWidget {
           case PageStatus.failure:
             return const Center(child: Text('failed to fetch posts'));
           case PageStatus.success:
-            if (state.page.isEmpty) {
-              return const Center(child: Text('no posts'));
-            }
-
-            return SingleChildScrollView(
-              child: Column(
-                children: [
-                  Container(
-                    alignment: Alignment.topLeft,
-                    margin: const EdgeInsets.only(
-                      top: 40,
-                      left: 15,
-                      right: 15,
-                      bottom: 15,
-                    ),
-                    child: Text(
-                      state.page.first.title,
-                      style: Theme.of(context).textTheme.titleLarge,
-                    ),
-                  ),
-                  Container(
+            if (state.page != null) {
+              return SingleChildScrollView(
+                child: Column(
+                  children: [
+                    Container(
+                      alignment: Alignment.topLeft,
                       margin: const EdgeInsets.only(
+                        top: 40,
                         left: 15,
                         right: 15,
-                        top: 3,
-                        bottom: 20,
+                        bottom: 15,
                       ),
-                      child: HtmlWidget(
-                        state.page.first.html,
-                        textStyle: const TextStyle(fontSize: 20),
-                      )),
-                ],
-              ),
-            );
-
+                      child: Text(
+                        state.page!.title,
+                        style: Theme.of(context).textTheme.titleLarge,
+                      ),
+                    ),
+                    Container(
+                        margin: const EdgeInsets.only(
+                          left: 15,
+                          right: 15,
+                          top: 3,
+                          bottom: 20,
+                        ),
+                        child: HtmlWidget(
+                          state.page!.html,
+                          textStyle: const TextStyle(fontSize: 20),
+                        )),
+                  ],
+                ),
+              );
+            } else {
+              return const Center(child: Text('no posts'));
+            }
           case PageStatus.initial:
             return const Center(child: CircularProgressIndicator());
         }

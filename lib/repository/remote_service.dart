@@ -5,9 +5,16 @@ import 'package:flutter_application_1/posts/model/post.dart';
 import 'dart:convert';
 
 class RemoteService {
-  Future<List<Categorie>> getCategories() async {
+  //конструктор для считывания переменных окружения
+  //разделить схему запроса и хост в отдельные переменные Done
+  //покрыть логами все внешние запросы
+
+  String _schema = 'http';
+  String _host = '192.168.1.24:4001';
+
+  Future<List<CategorieModel>> getCategories() async {
     final response = await http.get(Uri.parse(
-        'http://192.168.1.24:4001/ghost/api/content/tags/?key=2b621feea1174695f1666f5cca'));
+        '$_schema://$_host/ghost/api/content/tags/?key=2b621feea1174695f1666f5cca'));
     if (response.statusCode == 200) {
       final body = json.decode(response.body);
       List categories = [];
@@ -16,10 +23,10 @@ class RemoteService {
       } catch (e) {
         print(e);
       }
-      List<Categorie> result = [];
+      List<CategorieModel> result = [];
       for (Map<String, dynamic> categorie in categories) {
         if (categorie['visibility'] != 'public') continue;
-        result.add(Categorie.fromJson(categorie));
+        result.add(CategorieModel.fromJson(categorie));
       }
       return result;
     } else {
@@ -27,9 +34,9 @@ class RemoteService {
     }
   }
 
-  Future<List<Post>> getPosts(String slug) async {
+  Future<List<PostModel>> getPosts(String slug) async {
     final response = await http.get(Uri.parse(
-        'http://192.168.1.24:4001/ghost/api/content/posts/?key=2b621feea1174695f1666f5cca&filter=tag:$slug'));
+        '$_schema://$_host/ghost/api/content/posts/?key=2b621feea1174695f1666f5cca&filter=tag:$slug'));
     if (response.statusCode == 200) {
       final body = json.decode(response.body);
       List posts = [];
@@ -38,9 +45,9 @@ class RemoteService {
       } catch (e) {
         print(e);
       }
-      List<Post> result = [];
+      List<PostModel> result = [];
       for (Map<String, dynamic> post in posts) {
-        result.add(Post.apiConstructor(post));
+        result.add(PostModel.fromJson(post));
       }
       return result;
     } else {
@@ -48,9 +55,11 @@ class RemoteService {
     }
   }
 
-  Future<List<PageView>> getPage(String id) async {
+  //переделать так чтобы возращала только объект Done
+  //переименовать модель Done
+  Future<PostViewModel?> getPage(String id) async {
     final response = await http.get(Uri.parse(
-        'http://192.168.1.24:4001/ghost/api/content/posts/?key=2b621feea1174695f1666f5cca&filter=id:$id'));
+        '$_schema://$_host/ghost/api/content/posts/?key=2b621feea1174695f1666f5cca&filter=id:$id'));
     if (response.statusCode == 200) {
       final body = json.decode(response.body);
       List pages = [];
@@ -59,11 +68,11 @@ class RemoteService {
       } catch (e) {
         print(e);
       }
-      List<PageView> result = [];
+      PostViewModel? page;
       for (Map<String, dynamic> post in pages) {
-        result.add(PageView.apiConstructor(post));
+        page = PostViewModel.fromJson(post);
       }
-      return result;
+      return page;
     } else {
       throw Exception('Failed to load');
     }

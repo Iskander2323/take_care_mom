@@ -1,13 +1,13 @@
 import 'package:equatable/equatable.dart';
 
-class Post extends Equatable {
-  const Post(
+class PostModel extends Equatable {
+  const PostModel(
       {required this.title,
       required this.featureImage,
       required this.slug,
       required this.id});
 
-  Post.apiConstructor(Map<String, dynamic> data)
+  PostModel.fromJson(Map<String, dynamic> data)
       : id = data['id'],
         title = data['title'],
         slug = data['slug'],

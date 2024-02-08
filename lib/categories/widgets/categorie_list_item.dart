@@ -5,7 +5,7 @@ import 'package:routemaster/routemaster.dart' as routemaster;
 class CategoriesListItem extends StatelessWidget {
   const CategoriesListItem({required this.categorie, super.key});
 
-  final Categorie categorie;
+  final CategorieModel categorie;
 
   @override
   Widget build(BuildContext context) {

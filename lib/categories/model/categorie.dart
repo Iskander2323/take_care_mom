@@ -1,10 +1,10 @@
 import 'package:equatable/equatable.dart';
 
-class Categorie extends Equatable {
-  const Categorie(
+class CategorieModel extends Equatable {
+  const CategorieModel(
       {required this.name, required this.slug, required this.featureImage});
 
-  Categorie.fromJson(Map<String, dynamic> data)
+  CategorieModel.fromJson(Map<String, dynamic> data)
       : name = data['name'],
         slug = data['slug'],
         featureImage = data['feature_image'] ?? "";

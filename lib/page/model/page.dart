@@ -1,14 +1,14 @@
 import 'package:equatable/equatable.dart';
 
-class PageView extends Equatable {
-  const PageView(
+class PostViewModel extends Equatable {
+  const PostViewModel(
       {required this.title,
       required this.featureImage,
       required this.html,
       required this.slug,
       required this.id});
 
-  PageView.apiConstructor(Map<String, dynamic> data)
+  PostViewModel.fromJson(Map<String, dynamic> data)
       : id = data['id'],
         title = data['title'],
         slug = data['slug'],

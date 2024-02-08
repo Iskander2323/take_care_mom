@@ -4,25 +4,22 @@ enum PostStatus { initial, success, failure }
 
 final class PostState extends Equatable {
   const PostState({
-    //this.slug = slug,
     this.status = PostStatus.initial,
-    this.posts = const <Post>[],
+    this.posts = const <PostModel>[],
     this.hasReachedMax = false,
   });
 
-  // final String slug;
   final PostStatus status;
-  final List<Post> posts;
+  final List<PostModel> posts;
   final bool hasReachedMax;
 
   PostState copyWith({
     String? slug,
     PostStatus? status,
-    List<Post>? posts,
+    List<PostModel>? posts,
     bool? hasReachedMax,
   }) {
     return PostState(
-      // slug: slug ?? this.slug,
       status: status ?? this.status,
       posts: posts ?? this.posts,
       hasReachedMax: hasReachedMax ?? this.hasReachedMax,
