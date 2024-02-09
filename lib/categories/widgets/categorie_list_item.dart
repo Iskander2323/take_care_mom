@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/app_config.dart';
 import 'package:flutter_application_1/categories/model/categorie.dart';
 import 'package:routemaster/routemaster.dart' as routemaster;
 
@@ -23,7 +24,7 @@ class CategoriesListItem extends StatelessWidget {
                 width: 0.5,
               )),
           padding: const EdgeInsets.all(1.0),
-          height: 245,
+          height: 285,
           width: 80,
           child: Column(
             children: [

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/categories/view/categories_page.dart';
-import 'package:flutter_application_1/page/view/page_view.dart';
+import 'package:flutter_application_1/page/view/page_view_page.dart';
 import 'package:flutter_application_1/repository/posts_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:routemaster/routemaster.dart';

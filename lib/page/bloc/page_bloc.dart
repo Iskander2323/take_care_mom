@@ -28,13 +28,11 @@ class PageBloc extends Bloc<PageEvent, PageState> {
         ));
       }
       final page = await _pageRepository.getPage(event.id);
-      emit(page.isEmpty
-          ? state.copyWith(hasReachedMax: true)
-          : state.copyWith(
-              status: PageStatus.success,
-              page: List.of(state.page)..addAll(page),
-              hasReachedMax: false,
-            ));
+      emit(state.copyWith(
+        status: PageStatus.success,
+        page: page,
+        hasReachedMax: false,
+      ));
     } catch (_) {
       emit(state.copyWith(status: PageStatus.failure));
     }
