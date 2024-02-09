@@ -9,7 +9,7 @@ class AppConfig {
   AppConfig._();
 
   static final AppConfig _singleton = AppConfig._();
-
+  //?
   static String get ENVIRONMENT => env['ENVIRONMENT'] ?? 'dev';
   static String get DEV_SCHEME => env['DEV_SCHEME'] ?? 'http';
   static String get DEV_HOST => env['DEV_HOST'] ?? '192.168.1.24:4001';

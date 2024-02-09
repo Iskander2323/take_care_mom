@@ -16,25 +16,22 @@ class CategorieBloc extends Bloc<CategorieEvent, CategorieState> {
   final PostsRepository _postsRepository;
   Future<void> _onCategorieFetched(
       CategorieFetched event, Emitter<CategorieState> emit) async {
-    if (state.hasReachedMax) return;
     emit(const CategorieState(status: CategorieStatus.initial));
     try {
       if (state.status == CategorieStatus.initial) {
         final categories = await _postsRepository.getCategories();
-        return emit(state.copyWith(
-          status: CategorieStatus.success,
-          categories: categories,
-          hasReachedMax: false,
-        ));
+        if (categories != null) {
+          return emit(state.copyWith(
+            status: CategorieStatus.success,
+            categories: categories,
+          ));
+        } else {
+          return emit(state.copyWith(
+            status: CategorieStatus.failure,
+            categories: categories,
+          ));
+        }
       }
-      final categories = await _postsRepository.getCategories();
-      emit(categories.isEmpty
-          ? state.copyWith(hasReachedMax: true)
-          : state.copyWith(
-              status: CategorieStatus.success,
-              categories: List.of(state.categories)..addAll(categories),
-              hasReachedMax: false,
-            ));
     } catch (_) {
       emit(state.copyWith(status: CategorieStatus.failure));
     }
