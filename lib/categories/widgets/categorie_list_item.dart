@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/app_config.dart';
 import 'package:flutter_application_1/categories/model/categorie.dart';
 import 'package:routemaster/routemaster.dart' as routemaster;
 
@@ -24,14 +23,15 @@ class CategoriesListItem extends StatelessWidget {
                 width: 0.5,
               )),
           padding: const EdgeInsets.all(1.0),
-          height: 285,
+          height: 245,
           width: 80,
           child: Column(
+            //сделать его более адаптивным картинки не расширяются
             children: [
               if (categorie.featureImage.isNotEmpty)
                 SizedBox(
                   height: 200,
-                  width: 500,
+                  width: double.infinity,
                   child: ClipRRect(
                     borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(15),
@@ -46,7 +46,7 @@ class CategoriesListItem extends StatelessWidget {
               else
                 Container(
                   height: 200,
-                  width: 500,
+                  width: double.infinity,
                   decoration: const BoxDecoration(
                       borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(10),

@@ -9,9 +9,9 @@ import 'package:flutter_application_1/bloc_observer.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await AppConfig().load();
   Bloc.observer = const SimpleBlocObserver();
   final postsRepository = PostsRepository();
-  await AppConfig().load();
 
   runApp(startApp(postsRepository));
 }

@@ -30,7 +30,7 @@ class PostsListItem extends StatelessWidget {
               if (post.featureImage.isNotEmpty)
                 SizedBox(
                   height: 200,
-                  width: 500,
+                  width: double.infinity,
                   child: ClipRRect(
                     borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(15),
@@ -44,7 +44,7 @@ class PostsListItem extends StatelessWidget {
               else
                 Container(
                   height: 200,
-                  width: 500,
+                  width: double.infinity,
                   decoration: const BoxDecoration(
                       borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(10),
