@@ -12,58 +12,28 @@ class CategoriesList extends StatefulWidget {
 }
 
 class _CategoriesListState extends State<CategoriesList> {
-  final _scrollController = ScrollController();
-
-  @override
-  void initState() {
-    super.initState();
-    _scrollController.addListener(_onScroll);
-  }
-
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<CategorieBloc, CategorieState>(
         builder: (context, state) {
       switch (state.status) {
         case CategorieStatus.failure:
-          return const Center(child: Text('failed to fetch posts'));
+          return const Center(child: Text('failed to fetch categories'));
         case CategorieStatus.success:
           if (state.categories.isEmpty) {
-            return const Center(child: Text('no posts'));
+            return const Center(child: Text('No categories'));
+          } else {
+            return ListView.builder(
+              itemBuilder: (BuildContext context, int index) {
+                return index >= state.categories.length
+                    ? const BottomLoader()
+                    : CategoriesListItem(categorie: state.categories[index]);
+              },
+            );
           }
-          return ListView.builder(
-            itemBuilder: (BuildContext context, int index) {
-              return index >= state.categories.length
-                  ? const BottomLoader()
-                  : CategoriesListItem(categorie: state.categories[index]);
-            },
-            itemCount: state.hasReachedMax
-                ? state.categories.length
-                : state.categories.length,
-            controller: _scrollController,
-          );
         case CategorieStatus.initial:
           return const Center(child: CircularProgressIndicator());
       }
     });
-  }
-
-  @override
-  void dispose() {
-    _scrollController
-      ..removeListener(_onScroll)
-      ..dispose();
-    super.dispose();
-  }
-
-  void _onScroll() {
-    if (_isBottom) context.read<CategorieBloc>().add(CategorieFetched());
-  }
-
-  bool get _isBottom {
-    if (!_scrollController.hasClients) return false;
-    final maxScroll = _scrollController.position.maxScrollExtent;
-    final currentScroll = _scrollController.offset;
-    return currentScroll >= (maxScroll * 0.9);
   }
 }
